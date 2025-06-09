@@ -5,6 +5,11 @@
   box-sizing: border-box;
 }
 
+
+#hoverLabel {
+  z-index: 10000; /* ensure it's above all other elements */
+}
+
 /* Body */
 body {
   background-color: black;
@@ -142,4 +147,24 @@ body {
 
 .top-view-btn:hover {
   background-color: #0056b3;
+}
+
+
+/* Modern Solar Heading */
+.solar-heading {
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  font-size: 36px;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 0 0 4px #00c3ff, 0 0 8px #0077ff;
+  letter-spacing: 1.5px;
+}
+
+
+@media (max-width: 600px) {
+  .solar-heading {
+    font-size: 22px;
+  }
 }

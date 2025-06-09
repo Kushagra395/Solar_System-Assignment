@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3D Solar System</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
 </head>
 <body class="bg-black text-white overflow-hidden">
+  
+  <h1 class="solar-heading"> The 3D Solar System</h1>
+  
 
-  <!-- Sidebar -->
+  
+
   <div id="sidebar" class="sidebar">
     <div class="sidebar-header">
       <h2>Control Panel</h2>
@@ -33,15 +38,17 @@
   <!-- Top View Button -->
   <button id="topViewBtn" class="top-view-btn">Top View</button>
 
-  <!-- 3D Canvas -->
+  <!-- 3D Canvas (here 3d model is getting render from three.js) -->
   <canvas id="solarSystem"></canvas>
 
-  <div id="hoverLabel"
-     style="position: absolute; color: black; background: rgba(255,255,255,0.8); padding: 4px 8px; border-radius: 6px; font-weight: bold; pointer-events: none; display: none;">
-  </div>
+ <div id="hoverLabel"
+     style="position: fixed; color: black; background: rgba(255,255,255,0.9); padding: 4px 10px; border-radius: 6px; font-weight: bold; pointer-events: none; display: none; font-size: 14px; z-index: 10000;">
+</div>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/three@0.150.0/build/three.min.js"></script>
+  <!-- Scripts -->  
+   <!-- threejs libarary for 3d -->
+  <script src="https://unpkg.com/three@0.150.0/build/three.min.js"></script> 
+   
   <script src="script.js"></script>
 </body>
-</html>
+</html> 

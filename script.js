@@ -13,7 +13,7 @@ animate();
 
 function init() {
   const canvas = document.querySelector('#solarSystem');
-  scene = new THREE.Scene();
+  scene = new THREE.Scene(); //creating 3d scene
 
   camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.z = 50;
@@ -25,24 +25,24 @@ function init() {
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
 
-  // Improved lighting
+  // point of light from sum 
   const sunLight = new THREE.PointLight(0xffffff, 2, 300);
   scene.add(sunLight);
 
-  const ambientLight = new THREE.AmbientLight(0x333333);
+  const ambientLight = new THREE.AmbientLight(0x333333); //softy faint 
   scene.add(ambientLight);
 
   // Initialize Raycaster and Mouse Vector for Hover Detection
   raycaster = new THREE.Raycaster();
   mouse = new THREE.Vector2();
 
-  // Background stars
+  // Background stars texture
   const loader = new THREE.TextureLoader();
   loader.load('textures/stars.jpg', texture => {
     scene.background = texture;
   });
 
-  // Sun
+  // textured sun with brightness
   const sunGeo = new THREE.SphereGeometry(5, 64, 64);
   const sunMat = new THREE.MeshBasicMaterial({ map: loader.load('textures/sun.jpg') });
   const sun = new THREE.Mesh(sunGeo, sunMat);
@@ -91,9 +91,9 @@ function init() {
       document.getElementById(`${data.name}SpeedPercent`).textContent = `${(planetSpeeds[data.name] * 100).toFixed(1)}%`;
     });
     
-    // Add Saturn's ring
+    // Add Saturn's ring with texture
     if (data.hasRing) {
-      // More realistic ring geometry
+      
       const ringInnerRadius = data.size * 1.7;
       const ringOuterRadius = data.size * 2.2;
       const ringSegments = 128;
@@ -114,7 +114,7 @@ function init() {
       ring.name = "Saturn's Ring";
       mesh.add(ring);
       
-      // Add a subtle glow effect
+      //  glow effect for the planet to make relastic
       const ringGlow = new THREE.Mesh(
         new THREE.RingGeometry(ringInnerRadius - 0.1, ringOuterRadius + 0.1, ringSegments),
         new THREE.MeshBasicMaterial({
@@ -141,7 +141,7 @@ function init() {
   // Close sidebar button
   document.getElementById('close-sidebar').addEventListener('click', toggleSidebar);
 
-  // Pause/Resume button
+  // Pause/Resume button for the plantets
   const pauseResumeBtn = document.getElementById('pauseResumeBtn');
   pauseResumeBtn.addEventListener('click', () => {
     isPaused = !isPaused;
@@ -216,7 +216,7 @@ function animate() {
     for (let name in planets) {
       const p = planets[name];
       p.angle += planetSpeeds[name];
-      p.mesh.position.x = Math.cos(p.angle) * p.distance;
+      p.mesh.position.x = Math.cos(p.angle) * p.distance; //this will give circular motion around the sun 
       p.mesh.position.z = Math.sin(p.angle) * p.distance;
       
       // Rotate Saturn's ring for added realism
@@ -230,27 +230,27 @@ function animate() {
     }
   }
 
-  // Raycasting for hover
+  // Raycasting for hover when come mouse hover any pln
   raycaster.setFromCamera(mouse, camera);
-  const intersects = raycaster.intersectObjects(Object.values(planets).map(p => p.mesh));
+ const intersects = raycaster.intersectObjects(Object.values(planets).map(p => p.mesh));
 
-  const label = document.getElementById('hoverLabel');
-  if (intersects.length > 0) {
-    const planet = intersects[0].object;
-    const planetPos = planet.position.clone();
-    planetPos.project(camera);
+const label = document.getElementById('hoverLabel');
+if (intersects.length > 0) {
+  const planet = intersects[0].object;
+  const planetPos = planet.position.clone();
+  planetPos.project(camera);
 
-    // Convert to pixel coordinates
-    const x = (planetPos.x * 0.5 + 0.5) * window.innerWidth;
-    const y = (-planetPos.y * 0.5 + 0.5) * window.innerHeight;
+  const x = (planetPos.x * 0.5 + 0.5) * window.innerWidth;
+  const y = (-planetPos.y * 0.5 + 0.5) * window.innerHeight;
 
-    label.style.left = `${x}px`;
-    label.style.top = `${y - 30}px`;
-    label.textContent = planet.name;
-    label.style.display = 'block';
-  } else {
-    label.style.display = 'none';
-  }
+  label.style.transform = `translate(-50%, -100%)`;
+  label.style.left = `${x}px`;
+  label.style.top = `${y}px`;
+  label.textContent = planet.name;
+  label.style.display = 'block';
+} else {
+  label.style.display = 'none';
+}
 
   renderer.render(scene, camera);
 }
