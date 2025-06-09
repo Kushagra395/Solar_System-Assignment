@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Solar System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-black text-white overflow-hidden">
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h2>Control Panel</h2>
+      <button id="close-sidebar" class="close-sidebar">×</button>
+    </div>
+    <div id="controls" class="controls"></div>
+
+    <!-- Pause/Resume Button -->
+    <button id="pauseResumeBtn" class="pauseResumeBtn">
+      Pause
+    </button>
+
+    <!-- Reset Speed Button -->
+    <button id="resetSpeedBtn" class="resetSpeedBtn">
+      Reset Speed
+    </button>
+  </div>
+
+  <!-- Sidebar Toggle Button -->
+  <div id="menu-toggle" class="menu-toggle">&#9776;</div>
+  
+  <!-- Top View Button -->
+  <button id="topViewBtn" class="top-view-btn">Top View</button>
+
+  <!-- 3D Canvas -->
+  <canvas id="solarSystem"></canvas>
+
+  <div id="hoverLabel"
+     style="position: absolute; color: black; background: rgba(255,255,255,0.8); padding: 4px 8px; border-radius: 6px; font-weight: bold; pointer-events: none; display: none;">
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/three@0.150.0/build/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

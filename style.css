@@ -1,0 +1,145 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  background-color: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  padding: 20px;
+  display: block;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+}
+
+.sidebar h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+.slider {
+  width: 100%;
+  height: 2px;
+  background-color: #555;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.speed-percent {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.pauseResumeBtn,
+.resetSpeedBtn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.pauseResumeBtn:hover,
+.resetSpeedBtn:hover {
+  background-color: #0056b3;
+}
+
+/* Sidebar Toggle Button */
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* Add to existing CSS */
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.close-sidebar {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+  line-height: 1;
+  top: -10px;
+  padding: 10;
+  margin-top: -16px;
+  display: none; /* Hidden by default */
+}
+
+.sidebar:not(.hidden) .close-sidebar {
+  display: block; /* Show when sidebar is visible */
+}
+
+.sidebar:not(.hidden) + #menu-toggle {
+  display: none; /* Hide hamburger when sidebar is open */
+}
+
+/* Adjust existing .menu-toggle */
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+  display: block; /* Always visible unless sidebar is open */
+}
+
+/* Top View Button */
+.top-view-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.top-view-btn:hover {
+  background-color: #0056b3;
+}
